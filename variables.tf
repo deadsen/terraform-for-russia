@@ -15,7 +15,7 @@ variable "az" {
 }
 
 variable "instance_count" {
-	default = "1"
+	default = "25"
 }
 
 variable "instance_type" {
